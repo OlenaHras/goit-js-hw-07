@@ -4,7 +4,7 @@ const galleryContainer = document.querySelector('.gallery');
 
 galleryContainer.insertAdjacentHTML('beforeend', createGallery(galleryItems));
 
-galleryContainer.addEventListener('click', onGalleryContainerClick,);
+// galleryContainer.addEventListener('click', onGalleryContainerClick,);
 
 function createGallery() {
   return galleryItems.map(({ original, preview, description }) => {
@@ -19,16 +19,7 @@ function createGallery() {
 </div>`
   }).join('');
 };
-function onGalleryContainerClick(event) {
-  event.preventDefault();
 
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  
-  gallery.open(event);
- 
-};
 let gallery = new SimpleLightbox('.gallery a',{
   captionsData: 'alt',
   captionPosition: 'bottom',

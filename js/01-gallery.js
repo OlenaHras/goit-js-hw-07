@@ -7,8 +7,6 @@ galleryContainer.insertAdjacentHTML('beforeend', createGallery(galleryItems));
 
 galleryContainer.addEventListener('click', onGalleryContainerClick);
 
-window.addEventListener('keydown', onCloseImage);
-
 function createGallery() {
   return galleryItems.map(({ original, preview, description }) => {
     return `<div class="gallery__item">
@@ -36,13 +34,15 @@ function onGalleryContainerClick(event) {
   
   modalWindow = basicLightbox.create(`
 	<img src="${selectedImg}"/>
-`);
+  `);
   modalWindow.show();
-  
+  window.addEventListener('keydown', onCloseImage);
 };
  
 function onCloseImage(event) {
   if (event.key === 'Escape') {
     modalWindow.close();
-  }
-}
+    window.removeEventListener('keydown', onCloseImage);
+  };
+};
+
