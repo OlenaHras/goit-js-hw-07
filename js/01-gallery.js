@@ -34,15 +34,21 @@ function onGalleryContainerClick(event) {
   
   modalWindow = basicLightbox.create(`
 	<img src="${selectedImg}"/>
-  `);
+  `, {
+    onShow: () => {
+      window.addEventListener('keydown', onCloseImage);
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', onCloseImage);
+    }
+  });
   modalWindow.show();
-  window.addEventListener('keydown', onCloseImage);
 };
  
 function onCloseImage(event) {
   if (event.key === 'Escape') {
-    modalWindow.close();
-    window.removeEventListener('keydown', onCloseImage);
+    modalWindow.close();  
   };
 };
+
 
